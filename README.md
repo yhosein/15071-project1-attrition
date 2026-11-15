@@ -35,8 +35,21 @@ data/           raw dataset
 notebooks/      EDA, modeling, evaluation
 ```
 
-## Setup
+## How to reproduce
 
 ```bash
+git clone https://github.com/yhosein/15071-project1-attrition.git
+cd 15071-project1-attrition
+python3 -m venv venv && source venv/bin/activate   # optional but recommended
 pip install -r requirements.txt
+cd notebooks
+jupyter notebook        # or: jupyter lab
 ```
+
+Open and run top to bottom, in order:
+1. `01_eda.ipynb` — sanity checks, distributions, correlation analysis (~1 minute).
+2. `02_modeling.ipynb` — benchmarks, model tuning, ensembling, and the bootstrap validation (**5–10 minutes** — the hyperparameter search and 3,000-resample bootstrap are the slow steps).
+
+Both notebooks already contain their last executed outputs, so you can also just read them without re-running anything. All randomized steps (train/test split, cross-validation folds, bootstrap resampling) use fixed `random_state`/seed values, so re-running reproduces the same numbers reported in this README and in the presentation.
+
+Tested with Python 3.9+; no GPU required.
